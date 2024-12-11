@@ -3,20 +3,23 @@ k8s-monitoring:
     name: Nomster Cluster
   externalServices:
     prometheus:
-      host: <path:k8s/data/grafana#url_prometheus>
-      basicAuth:
-        username: <path:k8s/data/grafana#user_prometheus>
-        password: <path:k8s/data/grafana#token>
+    # Credential management
+    secret:
+      create: false
+      name: "prometheus-credentials"
+      namespace: "grafana"
     loki:
-      host: <path:k8s/data/grafana#url_loki>
-      basicAuth:
-        username: <path:k8s/data/grafana#user_loki>
-        password: <path:k8s/data/grafana#token>
+    # Credential management
+    secret:
+      create: false
+      name: "loki-credentials"
+      namespace: "grafana"
     tempo:
-      host: <path:k8s/data/grafana#url_tempo>
-      basicAuth:
-        username: <path:k8s/data/grafana#user_tempo>
-        password: <path:k8s/data/grafana#token>
+    # Credential management
+    secret:
+      create: false
+      name: "tempo-credentials"
+      namespace: "grafana"
   metrics:
     enabled: true
     alloy:
